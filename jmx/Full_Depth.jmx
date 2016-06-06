@@ -740,6 +740,13 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
+                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                </elementProp>
               </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
@@ -748,7 +755,7 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">web/guest/home/-/testray/runs/${__P(full.depth.testrayRunId)}/teams</stringProp>
+            <stringProp name="HTTPSampler.path">/web/guest/home/-/testray/case_results/teams</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -832,6 +839,13 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
+                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                </elementProp>
               </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
@@ -840,7 +854,7 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/web/guest/home/-/testray/runs/${__P(full.depth.testrayRunId)}</stringProp>
+            <stringProp name="HTTPSampler.path">/web/guest/home/-/testray/case_results/components</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -924,6 +938,13 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
+                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                </elementProp>
               </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
@@ -932,7 +953,7 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/web/guest/home/-/testray/runs/${__P(full.depth.testrayRunId)}/details</stringProp>
+            <stringProp name="HTTPSampler.path">/web/guest/home/-/testray/case_results</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
