@@ -61,6 +61,7 @@ public class RunReport {
 		writer.write(
 			"Total average time from start to end: " + totalAverage + "\n");
 		writer.newLine();
+		writer.write("Notes:\n");
 		writer.newLine();
 	}
 
