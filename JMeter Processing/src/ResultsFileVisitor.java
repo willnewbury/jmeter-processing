@@ -38,7 +38,8 @@ public class ResultsFileVisitor extends SimpleFileVisitor<Path> {
 		if (dirName.endsWith("/Full-Depth")
 			|| dirName.endsWith("/JMeter")
 			|| dirName.endsWith("/Output")
-			|| dirName.endsWith("/One-offs")) {
+			|| dirName.endsWith("/One-offs")
+			|| dirName.endsWith("/Comparison")) {
 
 			return FileVisitResult.CONTINUE;
 		}
