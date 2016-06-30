@@ -1,0 +1,16 @@
+In order to use this, you need Jmeter: http://jmeter.apache.org/download_jmeter.cgi
+
+You will want to update the configuration files (/jmx/testray.jmeter.properties) with your own properties for output and the like.
+
+To take a benchmark simply open up JMeter, load the jmx and run it, it should output everythign correctly to files in the output directory you specified.
+
+To analyze a benchmark, go to the JMeter Processing directory, ant clean compile, ant process-reports (obviously compile isn't needed if you haven't changed analysis and have compiled before).
+
+General tips and whatnot 
+- in Jmeter you can actually look at the results - what it sent, response, etc. Go to one of the view results trees and click on one of the results to look into it for more detail. In particular, if a test seems like its running to fast it might be reconfigured to look at a different run or a login failed or something like that - you can look into the response and search for some strings to see if that's the case (ie. search for "you do not have access" or "blah does not exist with id" stuff like that)
+- there are separate branches configured for prod and uat, master is config'd for nightly
+
+
+
+Known bugs
+- the first time taking a benchmark after opening up a new instance of Jmeter it seems to ouput to your home folder... some property isn't getting loaded properly on startup, but is after the first run. Haven't had time to fix
