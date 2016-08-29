@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="2.3" jmeter="2.8.20130705">
+<jmeterTestPlan version="1.2" properties="2.9" jmeter="3.0 r1743807">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Testray Test Plan" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -542,12 +542,12 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
-                <elementProp name="_1_WAR_testrayportlet_testrayBuildTypeId" elementType="HTTPArgument">
+                <elementProp name="testrayBuildTypeId" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${__P(full.depth.testrayBuildTypeId)}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayBuildTypeId</stringProp>
+                  <stringProp name="Argument.name">testrayBuildTypeId</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -641,12 +641,12 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
-                <elementProp name="_1_WAR_testrayportlet_testrayBuildId" elementType="HTTPArgument">
+                <elementProp name="testrayBuildId" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${__P(full.depth.testrayBuildId)}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayBuildId</stringProp>
+                  <stringProp name="Argument.name">testrayBuildId</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -740,12 +740,12 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
-                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                <elementProp name="testrayRunId" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                  <stringProp name="Argument.name">testrayRunId</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -839,12 +839,12 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
-                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                <elementProp name="testrayRunId" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                  <stringProp name="Argument.name">testrayRunId</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -938,12 +938,19 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">p_auth</stringProp>
                 </elementProp>
-                <elementProp name="_1_WAR_testrayportlet_testrayRunId" elementType="HTTPArgument">
+                <elementProp name="testrayRunId" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">${__P(full.depth.testrayRunId)}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">_1_WAR_testrayportlet_testrayRunId</stringProp>
+                  <stringProp name="Argument.name">testrayRunId</stringProp>
+                </elementProp>
+                <elementProp name="filterStatuses" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">4,3,1,2,5,7,0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">filterStatuses</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -1045,7 +1052,7 @@ FileUtils.copyFile(new File(&quot;${CONFIG_PATH}/testray.jmeter.properties&quot;
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">https://testray-nightly.liferay.com/web/guest/home/-/testray/case_results/46061169?_1_WAR_testrayportlet_redirect=https%3A%2F%2Ftestray-nightly.liferay.com%2Fweb%2Fguest%2Fhome%2F-%2Ftestray%2Fcase_results%2Findex%3F_1_WAR_testrayportlet_testrayRunId%3D46060430%26_1_WAR_testrayportlet_cur%3D1%26_1_WAR_testrayportlet_delta%3D75%26_1_WAR_testrayportlet_keywords%3D%26_1_WAR_testrayportlet_advancedSearch%3Dfalse%26_1_WAR_testrayportlet_andOperator%3Dtrue%26_1_WAR_testrayportlet_orderByCol%3DstatusLabel%26_1_WAR_testrayportlet_orderByType%3Dasc</stringProp>
+            <stringProp name="HTTPSampler.path">https://testray-nightly.liferay.com/web/guest/home/-/testray/case_results/46565543?redirect=https%3A%2F%2Ftestray-nightly.liferay.com%2Fweb%2Fguest%2Fhome%2F-%2Ftestray%2Fcase_results%2Findex%3FfilterAssignedUserId%3D-1%26filterComments%3D%26filterCommentsBlankOnly%3Dfalse%26filterErrors%3D%26filterErrorsBlankOnly%3Dfalse%26filterIssues%3D%26filterIssuesBlankOnly%3Dfalse%26filterName%3D%26filterPriorities%3D%26filterStatuses%3D4%252C3%252C1%252C2%252C5%252C7%252C0%26filterTestrayComponentId%3D-1%26tabs1%3Dall-cases%26testrayRunId%3D46565536%26cur%3D1%26delta%3D20%26keywords%3D%26advancedSearch%3Dfalse%26andOperator%3Dtrue%26status%3D4%252C3%252C1%252C2%252C5%252C7%252C0%26orderByCol%3DstatusLabel%26orderByType%3Dasc</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
