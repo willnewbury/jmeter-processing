@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="jmeterProcessing" default="process-reports" basedir=".">
+	<taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"/>
+
+	<target name="init">
+		<property name="sourceDir" value="src" />
+		<property name="outputDir" value="classes" />
+		<property name="libDir" value="lib" />
+		<property file="build.properties" />
+	</target>
+
+	<target name="clean" depends="init">
+		<delete dir="${outputDir}" />
+	</target>
+
+	<target name="prepare" depends="clean">
+		<mkdir dir="${outputDir}" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<javac srcdir="${sourceDir}" destdir="${outputDir}" includeantruntime="false">
+			<classpath>
+				<pathelement path="${libDir}/json-java.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="generate-properties-nightly" depends="compile">
+		<java classname="JMeterProcessing.JMeterPropertiesGenerator">
+			<classpath>
+				<pathelement path="${libDir}/json-java.jar" />
+				<pathelement location="${outputDir}" />
+			</classpath>
+			<sysproperty key="server" value="${nightly.server}" />
+			<sysproperty key="port" value="${nightly.port}" />
+			<sysproperty key="protocol" value="${nightly.protocol}" />
+			<sysproperty key="username" value="${nightly.username}" />
+			<sysproperty key="password" value="${nightly.password}" />
+			<sysproperty key="properties.output.dir" value="${properties.output.dir}" />
+		</java>
+	</target>
+
+	<target name="generate-properties-localhost" depends="compile">
+		<java classname="JMeterProcessing.JMeterPropertiesGenerator">
+			<classpath>
+				<pathelement path="${libDir}/json-java.jar" />
+				<pathelement location="${outputDir}" />
+			</classpath>
+			<sysproperty key="server" value="${localhost.server}" />
+			<sysproperty key="port" value="${localhost.port}" />
+			<sysproperty key="protocol" value="${localhost.protocol}" />
+			<sysproperty key="username" value="${localhost.username}" />
+			<sysproperty key="password" value="${localhost.password}" />
+			<sysproperty key="properties.output.dir" value="${properties.output.dir}" />
+		</java>
+	</target>
+
+	<target name="run-full-depth-benchmark" depends="compile">
+		<tstamp>
+			<format property="time.stamp" pattern="yyyy-MM-dd_HH:mm:ss"/>
+		</tstamp>
+
+		<mkdir dir="${full-depth.report.location}/${time.stamp}" />
+
+		<delete file="${jmeter.logfile}" />
+
+		<jmeter
+			jmeterhome="${jmeter.home}"
+			testplan="${full-depth.testplan}"
+			resultlog="${full-depth.report.location}/${time.stamp}/results.jstl"
+			jmeterlogfile="${jmeter.logfile}">
+			<jvmarg value="-Xmx5120m" />
+
+			<property name="jmeter.save.saveservice.output_format" value="csv"/>
+			<property name="jmeter.save.saveservice.bytes" value="true"/>
+			<property name="jmeter.save.saveservice.label" value="true"/>
+			<property name="jmeter.save.saveservice.latency" value="true"/>
+			<property name="jmeter.save.saveservice.response_code" value="true"/>
+			<property name="jmeter.save.saveservice.response_message" value="true"/>
+			<property name="jmeter.save.saveservice.successful" value="true"/>
+			<property name="jmeter.save.saveservice.thread_counts" value="true"/>
+			<property name="jmeter.save.saveservice.thread_name" value="true"/>
+			<property name="jmeter.save.saveservice.time" value="true"/>
+		</jmeter>
+
+		<delete dir="Output" />
+
+		<copy file="${properties.output.dir}/testray.jmeter.properties" tofile="${full-depth.report.location}/${time.stamp}/testray.jmeter.properties" />
+	</target>
+
+	<target name="generate-full-depth-report">
+		<java jar="${jmeter.home}/bin/ApacheJMeter.jar" fork="true">
+			<arg value="-g" />
+			<arg value="${full-depth.report.location}/${time.stamp}/results.jstl" />
+			<arg value="-o" />
+			<arg value="${full-depth.report.location}/${time.stamp}/report" />
+		</java>	
+	</target>
+
+	<target name="benchmark-no-generate" depends="run-full-depth-benchmark,generate-full-depth-report" />
+
+	<target name="benchmark-localhost" depends="generate-properties-localhost,run-full-depth-benchmark,generate-full-depth-report" />
+
+	<target name="benchmark-nightly" depends="generate-properties-nightly,run-full-depth-benchmark,generate-full-depth-report" />
+</project>
