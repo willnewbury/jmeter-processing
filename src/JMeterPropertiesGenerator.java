@@ -38,12 +38,10 @@ public class JMeterPropertiesGenerator {
 		Map<String, Long> idValuesMap = new HashMap<String, Long>();
 
 		processTestrayCaseResult(idValuesMap);
-		
 		processTestrayRun(idValuesMap);
-
 		processTestrayBuild(idValuesMap);
-
 		processTestrayBuildType(idValuesMap);
+		processTestrayTask(idValuesMap);
 
 		generatePropertiesFile(idValuesMap);
 	}
@@ -128,6 +126,20 @@ public class JMeterPropertiesGenerator {
 		writer.write("full.depth.password=" + _PASSWORD);
 	}
 
+	private static void processTestrayBuild(Map<String, Long> idValuesMap) throws IOException, JSONException {
+		String url = _URL_BASE + "/web/guest/home/-/testray/builds/" + idValuesMap.get("testrayBuildId") + ".json";
+		String[] idNames = new String[] {"testrayBuildTypeId", "testrayProductVersionId"};
+
+		doCurl(url, idNames, idValuesMap);
+	}
+
+	private static void processTestrayBuildType(Map<String, Long> idValuesMap) throws IOException, JSONException {
+		String url = _URL_BASE + "/web/guest/home/-/testray/build_types/" + idValuesMap.get("testrayBuildTypeId") + ".json";
+		String[] idNames = new String[] {"testrayProjectId"};
+
+		doCurl(url, idNames, idValuesMap);
+	}
+
 	private static void processTestrayCaseResult(Map<String, Long> idValuesMap) throws IOException, JSONException {
 		String url = _URL_BASE + "/web/guest/home/-/testray/case_results.json";
 		String[] idNames = new String[] {"testrayCaseResultId", "testrayTeamId", "testrayCaseId", "testrayComponentId", "testrayRunId"};
@@ -142,16 +154,9 @@ public class JMeterPropertiesGenerator {
 		doCurl(url, idNames, idValuesMap);
 	}
 
-	private static void processTestrayBuild(Map<String, Long> idValuesMap) throws IOException, JSONException {
-		String url = _URL_BASE + "/web/guest/home/-/testray/builds/" + idValuesMap.get("testrayBuildId") + ".json";
-		String[] idNames = new String[] {"testrayBuildTypeId", "testrayProductVersionId"};
-
-		doCurl(url, idNames, idValuesMap);
-	}
-
-	private static void processTestrayBuildType(Map<String, Long> idValuesMap) throws IOException, JSONException {
-		String url = _URL_BASE + "/web/guest/home/-/testray/build_types/" + idValuesMap.get("testrayBuildTypeId") + ".json";
-		String[] idNames = new String[] {"testrayProjectId"};
+	private static void processTestrayTask(Map<String, Long> idValuesMap) throws IOException, JSONException {
+		String url = _URL_BASE + "/web/guest/home/-/testray/subtasks.json";
+		String[] idNames = new String[] {"testraySubtaskId", "testrayTaskId"};
 
 		doCurl(url, idNames, idValuesMap);
 	}
