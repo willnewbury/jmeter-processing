@@ -165,7 +165,7 @@ public class JMeterPropertiesGenerator {
 	private static final String _PORT = System.getProperty("port");
 	private static final String _PROTOCOL = System.getProperty("protocol");
 	private static final String _SERVER = System.getProperty("server");
-	private static final String _URL_BASE = _SERVER + ":" + _PORT;
+	private static final String _URL_BASE = _PROTOCOL + "://" + _SERVER + ":" + _PORT;
 	private static final String _USERNAME = System.getProperty("username");
 
 }
