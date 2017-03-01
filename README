@@ -1,16 +1,37 @@
 In order to use this, you need Jmeter: http://jmeter.apache.org/download_jmeter.cgi
 
-You will want to update the configuration files (/jmx/testray.jmeter.properties) with your own properties for output and the like.
+Pretty simple utility for benchmarking Testray
 
-To take a benchmark simply open up JMeter, load the jmx and run it, it should output everythign correctly to files in the output directory you specified.
+Properties Files:
+	build.properties: This contains all of the properties needed for the ant targets. Namely:
+		- jmeter.home: point to where you installed JMeter
+		- jmeter.logfile: where it will output the jmeter liog
+		- properties.output.dir: where it will output the generated properties files filled with ids it got from whatever server you are testing
+		- nightly/localhost server info: properties for server, port, login info etc
+		- full-depth properties: where to find the jmx (found elsewhere in this repo), where to output the final report
 
-To analyze a benchmark, go to the JMeter Processing directory, ant clean compile, ant process-reports (obviously compile isn't needed if you haven't changed analysis and have compiled before).
+	jmx/testray.jmeter.full.depth.properties: Contains the basic properties for the basic benchmark (hitting all the pages) Namely:
+		- full.depth.output.dir= where to output results, should be same as in build.properties
+		- properties for concurrent users, loops through the benchmark, and ramp up time
 
-General tips and whatnot 
-- in Jmeter you can actually look at the results - what it sent, response, etc. Go to one of the view results trees and click on one of the results to look into it for more detail. In particular, if a test seems like its running to fast it might be reconfigured to look at a different run or a login failed or something like that - you can look into the response and search for some strings to see if that's the case (ie. search for "you do not have access" or "blah does not exist with id" stuff like that)
-- there are separate branches configured for prod and uat, master is config'd for nightly
+	jmx/testray.jmeter.properties: Generated file containing a copy of the base testray.jmeter.full.depth.properties, server info, login info, and the ids retrieved for this benchmark run.
 
+Other contents:
+	src/ Java code for hitting apis and generating properties.
+	jmx/ contains properties files and jmx files describing the JMeter benchmarking process
+	lib/ just a jar needed for properties generation
 
+Ant Build file: Contains the following important targets:
+	generate-properties-x: there's one of these for both nightly and localhost, runs the java code to retrieve ids via api from the server, writes them to testray.jmeter.properties
+	run-full-depth-benchmark: runs the JMeter benchmark according to whatever is in testray.jmeter.properties, outputs to dir set in properties
+	generate-full-depth-report: processes JMeter output into a html page with graphs and nice stuff like that
+	benchmark-x: one for nightly and localhost, runs sequentially generate properties, run benchmark, and generate report
+	benchmark-no-generate: runs the benchmark and generates a report. Use when you want to run a benchmark with the exact same props as you did last time.
 
-Known bugs
-- the first time taking a benchmark after opening up a new instance of Jmeter it seems to ouput to your home folder... some property isn't getting loaded properly on startup, but is after the first run. Haven't had time to fix
+Output:
+	- folder named with the timestamp of the benchmark, contains the results.jstl (text document with results), report, zip of report, and a copy of the properties file used in the benchmark
+	- jmeter.log file wherever you set it to output that.
+
+Other Notes:
+	- If you want to look at the actual output of hitting these pages, the jmxs can be run manually, provided a correct properties file is generated.
+	- properties are copied next to the report output. If you want to recreate an old benchmark, you can use those, though there are no guarantees those ids are still valid.
